@@ -57,51 +57,6 @@ client.once("ready", () => {
   // Change activity every 1 minute
   setInterval(setRandomActivity, 60000);
 
-  // Auto-populate blacklist on startup
-  setTimeout(async () => {
-    try {
-      const channel = await client.channels.fetch("1461038411661054290");
-      const message = await channel.messages.fetch("1464031169602654433");
-      
-      const blacklistEntries = [
-        { id: "819993380464361545", username: "Blake wales", nickname: "carlton7802", reason: "Dishonest behaviour, rude." },
-        { id: "743378155418419220", username: "fw4cj", nickname: "dripzzuk", reason: "PSD" },
-        { id: "810124490049716255", username: "VictorSWE", nickname: "victorswe", reason: "PSD" },
-        { id: "319877228936691713", username: "morgan", nickname: "mvvrgan", reason: "DCSMR" },
-        { id: "528840317797924865", username: "coffee", nickname: "coffee.7122", reason: "CMSR" },
-        { id: "555423754147332098", username: "hvprox", nickname: "hvprox", reason: "PSD" },
-        { id: "924406758682804255", username: "random", nickname: "hitmxrker", reason: "PSD" },
-        { id: "1249011360663339104", username: "cowlie", nickname: "cowlie1234", reason: "SPA" },
-        { id: "1030094133341204492", username: "yes", nickname: "naapurinseta99", reason: "SPA" },
-        { id: "521238417112170512", username: "LittleHorror", nickname: "littlehorror", reason: "SPA" },
-        { id: "279698017345470466", username: "J4cks0n", nickname: ".j4cks0n", reason: "OMBD" },
-        { id: "1182707904072130689", username: "Galahad", nickname: "mavricktermin", reason: "LAS CEO" },
-        { id: "1130516215417278607", username: "hen", nickname: "h_eenn", reason: "OMB" },
-        { id: "707338821192253563", username: "Goose", nickname: "generic.goose", reason: "SPA + OMBD" },
-        { id: "714431284910358538", username: "West", nickname: "westgrw", reason: "OMBD" },
-        { id: "443476936728248340", username: "Parkerdix", nickname: "parkerdix", reason: "OMBD" },
-        { id: "905494698548928593", username: "calix", nickname: "calixswiftie", reason: "OMBD" },
-        { id: "1175554421040615436", username: "COL. deputy632", nickname: ".katie.401", reason: "Blocking the owner. Seems to work with PSD." }
-      ];
-
-      let updatedContent = message.content;
-      
-      for (const entry of blacklistEntries) {
-        const line = `- <@${entry.id}>, ${entry.username} (${entry.nickname}) | ${entry.reason}, Is-banned: true | By AutoBlacklist`;
-        
-        // Check if entry already exists to avoid duplicates
-        if (!updatedContent.includes(`<@${entry.id}>`)) {
-          updatedContent += "\n" + line;
-        }
-      }
-
-      await message.edit(updatedContent);
-      console.log("Blacklist auto-populated successfully!");
-    } catch (error) {
-      console.error("Failed to auto-populate blacklist:", error);
-    }
-  }, 3000);
-
   // Register commands
   client.application.commands.set([{
     name: "blacklist",
