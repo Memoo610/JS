@@ -761,4 +761,4 @@ client.on("interactionCreate", async interaction => {
   }
 });
 
-client.login("MTQ2Mzk5NjYwMjE3OTEyNTI1OA.GLJvrJ.scRuandNWeOTI9TCPL6u2OOeqgKhlg8ikojWwA");
+client.login(process.env.TOKEN);
