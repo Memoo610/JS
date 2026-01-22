@@ -332,7 +332,7 @@ client.on("interactionCreate", async interaction => {
             .setColor(colorHex)
             .setTimestamp();
 
-          const leaksChannel = await client.channels.fetch("1464008512341540946");
+          const leaksChannel = await client.channels.fetch("1430607130183864463");
           await leaksChannel.send({ content: "@everyone", embeds: [embed] });
 
           interaction.reply({ content: `Leak "${name}" submitted successfully!`, flags: [] });
